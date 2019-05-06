@@ -7,6 +7,13 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 
+enum NavigationDirection : unsigned int {
+    Left,
+    Right,
+    Up,
+    Down
+};
+
 TermWidgetPage::TermWidgetPage(QWidget *parent)
     : QWidget(parent)
 {
@@ -29,6 +36,19 @@ TermWidgetPage::TermWidgetPage(QWidget *parent)
     m_currentTerm = w;
 
     setLayout(layout);
+
+#if 0
+    // test
+    split(currentTerminal(), Qt::Horizontal);
+    split(currentTerminal(), Qt::Vertical);
+    QTimer::singleShot(1000, this, [this](){
+        focusNavigation(Right);
+        split(currentTerminal(), Qt::Vertical);
+        QTimer::singleShot(1000, this, [this](){
+            focusNavigation(Left);
+        });
+    });
+#endif
 }
 
 TermWidgetWrapper *TermWidgetPage::currentTerminal()
@@ -109,6 +129,66 @@ const QString TermWidgetPage::identifier()
 void TermWidgetPage::focusCurrentTerm()
 {
     m_currentTerm->setFocus();
+}
+
+void TermWidgetPage::focusNavigation(NavigationDirection dir)
+{
+    QSplitter *splitter = qobject_cast<QSplitter *>(currentTerminal()->parent());
+    QWidget *splitterChild = currentTerminal();
+    QPoint termCenter = splitterChild->geometry().center();
+    Q_CHECK_PTR(splitter);
+qDebug() << splitterChild->geometry();
+    Qt::Orientation navOri = (dir == Up || dir == Down) ? Qt::Vertical : Qt::Horizontal;
+    bool isForward = dir == Down || dir == Right;
+
+    while (splitter->orientation() != navOri) {
+        QSplitter *splitterParent = qobject_cast<QSplitter*>(splitter->parent());
+        if (splitterParent == nullptr) {
+            // we do not have any extra terminal for navigation, so just return.
+            return;
+        } else {
+            splitterChild = splitter;
+            splitter = splitterParent;
+        }
+    }
+
+    int idx = splitter->indexOf(splitterChild);
+    idx = idx + (isForward ? 1 : -1);
+    splitterChild = splitter->widget(idx);
+
+    if (splitterChild) {
+        // find the first term.
+        for(;;) {
+            TermWidgetWrapper * term = qobject_cast<TermWidgetWrapper*>(splitterChild);
+            if (term) {
+                term->setFocus();
+                return;
+            } else {
+                QSplitter * subSplitter = qobject_cast<QSplitter*>(splitterChild);
+                Q_CHECK_PTR(subSplitter);
+                // Get the one in the same row/col
+                for (int i = 0, cnt = subSplitter->count(); i < cnt; i++) {
+                    QRect widgetGeometry = subSplitter->widget(i)->geometry();
+                    qDebug() << "aaaaaaaaaa" << widgetGeometry << termCenter;
+                    if (navOri == Qt::Horizontal) {
+                        if (widgetGeometry.top() <= termCenter.y()
+                                && widgetGeometry.bottom() >= termCenter.y()) {
+                            splitterChild = subSplitter->widget(i);
+                            continue;
+                        }
+                    } else {
+                        if (widgetGeometry.left() <= termCenter.x()
+                                && widgetGeometry.right() >= termCenter.x()) {
+                            splitterChild = subSplitter->widget(i);
+                            continue;
+                        }
+                    }
+                }
+                qWarning() << "Cannot find widget!";
+                splitterChild = subSplitter->widget(0);
+            }
+        }
+    }
 }
 
 void TermWidgetPage::onTermRequestSplit(Qt::Orientation ori)
