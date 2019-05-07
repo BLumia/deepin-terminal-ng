@@ -46,6 +46,15 @@ TermWidgetPage::TermWidgetPage(QWidget *parent)
         split(currentTerminal(), Qt::Vertical);
         QTimer::singleShot(1000, this, [this](){
             focusNavigation(Left);
+            QTimer::singleShot(500, this, [this](){
+                focusNavigation(Right);
+                QTimer::singleShot(500, this, [this](){
+                    focusNavigation(Up);
+                    QTimer::singleShot(500, this, [this](){
+                        focusNavigation(Left);
+                    });
+                });
+            });
         });
     });
 #endif
@@ -135,9 +144,9 @@ void TermWidgetPage::focusNavigation(NavigationDirection dir)
 {
     QSplitter *splitter = qobject_cast<QSplitter *>(currentTerminal()->parent());
     QWidget *splitterChild = currentTerminal();
-    QPoint termCenter = splitterChild->geometry().center();
+    QPoint termCenter = splitterChild->mapTo(parentWidget(), splitterChild->rect().center());
     Q_CHECK_PTR(splitter);
-qDebug() << splitterChild->geometry();
+
     Qt::Orientation navOri = (dir == Up || dir == Down) ? Qt::Vertical : Qt::Horizontal;
     bool isForward = dir == Down || dir == Right;
 
@@ -167,25 +176,27 @@ qDebug() << splitterChild->geometry();
                 QSplitter * subSplitter = qobject_cast<QSplitter*>(splitterChild);
                 Q_CHECK_PTR(subSplitter);
                 // Get the one in the same row/col
-                for (int i = 0, cnt = subSplitter->count(); i < cnt; i++) {
+                int subSplitterIndex = 0;
+                for (int i = subSplitterIndex, cnt = subSplitter->count(); i < cnt; i++) {
+
                     QRect widgetGeometry = subSplitter->widget(i)->geometry();
-                    qDebug() << "aaaaaaaaaa" << widgetGeometry << termCenter;
+                    widgetGeometry.setTopLeft(subSplitter->mapTo(parentWidget(), widgetGeometry.topLeft()));
+
                     if (navOri == Qt::Horizontal) {
                         if (widgetGeometry.top() <= termCenter.y()
                                 && widgetGeometry.bottom() >= termCenter.y()) {
-                            splitterChild = subSplitter->widget(i);
-                            continue;
+                            subSplitterIndex = i;
+                            break;
                         }
                     } else {
                         if (widgetGeometry.left() <= termCenter.x()
                                 && widgetGeometry.right() >= termCenter.x()) {
-                            splitterChild = subSplitter->widget(i);
-                            continue;
+                            subSplitterIndex = i;
+                            break;
                         }
                     }
                 }
-                qWarning() << "Cannot find widget!";
-                splitterChild = subSplitter->widget(0);
+                splitterChild = subSplitter->widget(subSplitterIndex);
             }
         }
     }
