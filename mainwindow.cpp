@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initWindow();
     initTitleBar();
-    addTab();
+    addTab({});
 }
 
 MainWindow::~MainWindow()
@@ -63,9 +63,9 @@ MainWindow::~MainWindow()
     //
 }
 
-void MainWindow::addTab(bool activeTab)
+void MainWindow::addTab(TermProperties properties, bool activeTab)
 {
-    TermWidgetPage *termPage = new TermWidgetPage();
+    TermWidgetPage *termPage = new TermWidgetPage(properties);
     setNewTermPage(termPage, activeTab);
     int index = m_tabbar->addTab(termPage->identifier(), "New Terminal Tab");
     if (activeTab) {
@@ -176,7 +176,7 @@ void MainWindow::initShortcuts()
 
     QShortcut *newTab = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_T), this);
     connect(newTab, &QShortcut::activated, this, [this](){
-        this->addTab(true);
+        this->addTab(currentTab()->createCurrentTerminalProperties(), true);
     });
 }
 
@@ -196,7 +196,7 @@ void MainWindow::initTitleBar()
     }, Qt::QueuedConnection);
 
     connect(m_tabbar, &DTabBar::tabAddRequested, this, [this](){
-        addTab(true);
+        addTab(currentTab()->createCurrentTerminalProperties(), true);
     }, Qt::QueuedConnection);
 
     connect(m_tabbar, &DTabBar::currentChanged, this, [this](int index){

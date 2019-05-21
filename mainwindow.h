@@ -7,6 +7,7 @@
 
 DWIDGET_USE_NAMESPACE
 
+class TermProperties;
 class TabBar;
 class ThemePanel;
 class TermWidgetPage;
@@ -18,7 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    void addTab(bool activeTab = false);
+    void addTab(TermProperties properties, bool activeTab = false);
     void closeTab(const QString &identifier);
     void focusTab(const QString &identifier);
     TermWidgetPage *currentTab();
