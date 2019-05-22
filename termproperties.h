@@ -9,14 +9,22 @@ enum TermProperty {
     ShellProgram
 };
 
-class TermProperties : public QMap<TermProperty, QVariant>
+class TermProperties
 {
     Q_GADGET
 public:
-    TermProperties(QString workingDir);
-    TermProperties(QString workingDir, QString colorScheme);
-    TermProperties(std::initializer_list<std::pair<TermProperty,QVariant> > list);
-    TermProperties(const TermProperties &) = default;
+    explicit TermProperties() = default;
+    explicit TermProperties(QString workingDir);
+    explicit TermProperties(QString workingDir, QString colorScheme);
+    explicit TermProperties(QMap<TermProperty, QVariant> list);
+
+    bool contains(TermProperty propertyType) const;
+
+    QVariant &operator[](const TermProperty &key);
+    const QVariant operator[](const TermProperty &key) const;
+
+private:
+    QMap<TermProperty, QVariant> m_properties;
 };
 
 #endif // TERMPROPERTIES_H

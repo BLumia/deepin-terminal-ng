@@ -206,7 +206,7 @@ void TermWidgetPage::focusNavigation(NavigationDirection dir)
 
 TermProperties TermWidgetPage::createCurrentTerminalProperties()
 {
-    TermProperties properties({});
+    TermProperties properties;
 
     TermWidgetWrapper * term = currentTerminal();
     if (term) {

@@ -4,6 +4,7 @@
 #include "tabbar.h"
 #include "themepanel.h"
 #include "termwidgetpage.h"
+#include "termproperties.h"
 
 #include <DAnchors>
 #include <DTitlebar>
@@ -55,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initWindow();
     initTitleBar();
-    addTab({});
+    addTab(TermProperties{});
 }
 
 MainWindow::~MainWindow()

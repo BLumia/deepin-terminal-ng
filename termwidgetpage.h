@@ -1,8 +1,8 @@
 #ifndef TERMWIDGETPAGE_H
 #define TERMWIDGETPAGE_H
 
-#include <define.h>
-#include <termproperties.h>
+#include "define.h"
+#include "termproperties.h"
 
 #include <QWidget>
 
