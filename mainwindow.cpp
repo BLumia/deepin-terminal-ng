@@ -203,11 +203,15 @@ void MainWindow::initShortcuts()
 
 void MainWindow::initConnections()
 {
-    connect(m_themePanel, &ThemePanel::themeChanged, this, [this](const QString themeName){
+    connect(m_themePanel, &ThemePanel::themeChanged, this, [this](const QString themeName) {
         qDebug() << "Test, will not be saved. Theme name:" << themeName;
         // just for test purpose
         TermWidgetPage *page = currentTab();
         if (page) page->setColorScheme(themeName);
+    });
+
+    connect(m_settings, &Settings::opacityChanged, this, [](int opacity) {
+        qDebug() << "TODO: opacity changed:" << opacity;
     });
 
     connect(m_settings, &Settings::backgroundBlurChanged, this, [this](bool enabled) {
@@ -259,7 +263,7 @@ void MainWindow::initTitleBar()
 {
     QAction *switchThemeAction(new QAction(tr("Switch &theme"), this));
     m_menu->addAction(switchThemeAction);
-    QAction *settingAction(new QAction(tr("Settings"), this));
+    QAction *settingAction(new QAction(tr("&Settings"), this));
 
     m_menu->addAction(settingAction);
 

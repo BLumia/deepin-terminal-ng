@@ -4,13 +4,13 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="260"/>
+        <location filename="../mainwindow.cpp" line="264"/>
         <source>Switch &amp;theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="262"/>
-        <source>Settings</source>
+        <location filename="../mainwindow.cpp" line="266"/>
+        <source>&amp;Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

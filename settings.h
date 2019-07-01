@@ -14,6 +14,7 @@ public:
 
     void initConnection();
 
+    int opacity() const; // from 0 to 100, since DSettings only support int for slider.
     bool backgroundBlur() const;
 
     DSettings *settings;
@@ -21,6 +22,7 @@ public:
 signals:
     void settingValueChanged(const QString &key, const QVariant &value);
 
+    void opacityChanged(int opacityRange);
     void backgroundBlurChanged(bool enabled);
 
 private:

@@ -26,10 +26,20 @@ void Settings::initConnection()
         emit settingValueChanged(key, value);
     });
 
+    QPointer<DSettingsOption> opacity = settings->option("basic.interface.opacity");
+    connect(opacity, &Dtk::Core::DSettingsOption::valueChanged, this, [=] (QVariant value) {
+        emit opacityChanged(value.toInt());
+    });
+
     QPointer<DSettingsOption> backgroundBlur = settings->option("advanced.window.blur_background");
     connect(backgroundBlur, &Dtk::Core::DSettingsOption::valueChanged, this, [=] (QVariant value) {
         emit backgroundBlurChanged(value.toBool());
     });
+}
+
+int Settings::opacity() const
+{
+    return settings->option("basic.interface.opacity")->value().toInt();
 }
 
 bool Settings::backgroundBlur() const
