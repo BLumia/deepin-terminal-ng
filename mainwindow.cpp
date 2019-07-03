@@ -210,8 +210,13 @@ void MainWindow::initConnections()
         if (page) page->setColorScheme(themeName);
     });
 
-    connect(m_settings, &Settings::opacityChanged, this, [](int opacity) {
-        qDebug() << "TODO: opacity changed:" << opacity;
+    connect(m_settings, &Settings::opacityChanged, this, [this](int opacity) {
+        for (int i = 0, count = m_termStackWidget->count(); i < count; i++) {
+            TermWidgetPage *tabPage = qobject_cast<TermWidgetPage*>(m_termStackWidget->widget(i));
+            if (tabPage) {
+                tabPage->setTerminalOpacity(opacity / 100.0);
+            }
+        }
     });
 
     connect(m_settings, &Settings::backgroundBlurChanged, this, [this](bool enabled) {
