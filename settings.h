@@ -10,11 +10,11 @@ class Settings : public QObject
 {
     Q_OBJECT
 public:
-    Settings(QWidget *parent = nullptr);
+    static Settings *instance();
 
     void initConnection();
 
-    int opacity() const; // from 0 to 100, since DSettings only support int for slider.
+    qreal opacity() const;
     bool backgroundBlur() const;
 
     DSettings *settings;
@@ -22,10 +22,14 @@ public:
 signals:
     void settingValueChanged(const QString &key, const QVariant &value);
 
-    void opacityChanged(int opacityRange);
+    void opacityChanged(qreal opacity);
     void backgroundBlurChanged(bool enabled);
 
 private:
+    Settings();
+
+    static Settings *m_settings_instance;
+
     Dtk::Core::QSettingBackend *m_backend;
     QString m_configPath;
 };

@@ -24,7 +24,6 @@ MainWindow::MainWindow(TermProperties properties, QWidget *parent) :
     m_menu(new QMenu),
     m_tabbar(new TabBar),
     m_themePanel(new ThemePanel(this)),
-    m_settings(new Settings(this)),
     m_centralWidget(new QWidget(this)),
     m_centralLayout(new QVBoxLayout(m_centralWidget)),
     m_termStackWidget(new QStackedWidget)
@@ -134,7 +133,7 @@ void MainWindow::initWindow()
     restoreGeometry(settings.value("geometry").toByteArray());
     restoreState(settings.value("windowState").toByteArray());
 
-    setEnableBlurWindow(m_settings->backgroundBlur());
+    setEnableBlurWindow(Settings::instance()->backgroundBlur());
 }
 
 void MainWindow::initShortcuts()
@@ -210,16 +209,16 @@ void MainWindow::initConnections()
         if (page) page->setColorScheme(themeName);
     });
 
-    connect(m_settings, &Settings::opacityChanged, this, [this](int opacity) {
+    connect(Settings::instance(), &Settings::opacityChanged, this, [this](qreal opacity) {
         for (int i = 0, count = m_termStackWidget->count(); i < count; i++) {
             TermWidgetPage *tabPage = qobject_cast<TermWidgetPage*>(m_termStackWidget->widget(i));
             if (tabPage) {
-                tabPage->setTerminalOpacity(opacity / 100.0);
+                tabPage->setTerminalOpacity(opacity);
             }
         }
     });
 
-    connect(m_settings, &Settings::backgroundBlurChanged, this, [this](bool enabled) {
+    connect(Settings::instance(), &Settings::backgroundBlurChanged, this, [this](bool enabled) {
         setEnableBlurWindow(enabled);
     });
 }
@@ -307,6 +306,6 @@ void MainWindow::setNewTermPage(TermWidgetPage *termPage, bool activePage)
 void MainWindow::showSettingDialog()
 {
     QScopedPointer<DSettingsDialog> dialog(new DSettingsDialog(this));
-    dialog->updateSettings(m_settings->settings);
+    dialog->updateSettings(Settings::instance()->settings);
     dialog->exec();
 }

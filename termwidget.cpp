@@ -1,5 +1,6 @@
 #include "termwidget.h"
 #include "termproperties.h"
+#include "settings.h"
 #include "define.h"
 
 #include <QVBoxLayout>
@@ -23,7 +24,7 @@ TermWidget::TermWidget(TermProperties properties, QWidget *parent)
     // set shell program
     QString shell { getenv("SHELL") };
     setShellProgram(shell.isEmpty() ? "/bin/bash" : shell);
-    setTerminalOpacity(0.75); // TODO: read it from config
+    setTerminalOpacity(Settings::instance()->opacity());
     setScrollBarPosition(QTermWidget::ScrollBarRight);
     if (properties.contains(WorkingDir)) {
         setWorkingDirectory(properties[WorkingDir].toString());
