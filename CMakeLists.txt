@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.9.5)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
-include (DtkSettingsToolsMacros)
+#include (DtkSettingsToolsMacros)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -16,7 +16,7 @@ set(QT_MINIMUM_VERSION "5.7.1")
 
 # Find the QtWidgets library
 find_package(Qt5 ${QT_MINIMUM_VERSION} CONFIG REQUIRED Widgets LinguistTools)
-find_package(Dtk REQUIRED Core Widget)
+find_package(Dtk REQUIRED Core Widget Tools)
 find_package(QTermWidget5 REQUIRED)
 
 # Populate a CMake variable with the sources
@@ -27,7 +27,6 @@ set (DTNG_CPP_FILES
     tabbar.cpp
     termwidget.cpp
     termwidgetpage.cpp
-    titlebar.cpp
     rightpanel.cpp
     themepanel.cpp
     themelistview.cpp
@@ -45,7 +44,6 @@ set (DTNG_HEADER_FILES
     tabbar.h
     termwidget.h
     termwidgetpage.h
-    titlebar.h
     rightpanel.h
     themepanel.h
     themelistview.h

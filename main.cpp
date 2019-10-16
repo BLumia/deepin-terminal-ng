@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName("blumia");
     app.setApplicationName("dterm");
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
-    app.setProductIcon(QIcon::fromTheme("deepin-terminal"));
+    app.setProductIcon(QIcon::fromTheme("deepin-terminal", QIcon::fromTheme("utilities-terminal")));
     app.loadTranslator();
 
 #ifdef QT_DEBUG

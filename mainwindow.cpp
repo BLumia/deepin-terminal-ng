@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 
-#include "titlebar.h"
 #include "tabbar.h"
 #include "settings.h"
 #include "termwidgetpage.h"
@@ -119,17 +118,18 @@ void MainWindow::forAllTabPage(const std::function<void(TermWidgetPage*)> &func)
 
 void MainWindow::setTitleBarBackgroundColor(QString color)
 {
-    // how dde-file-manager make the setting dialog works under dark theme?
-    if (QColor(color).lightness() < 128) {
-        DThemeManager::instance()->setTheme("dark");
-    } else {
-        DThemeManager::instance()->setTheme("light");
-    }
-    // apply titlebar background color
-    titlebar()->setStyleSheet(QString("%1"
-                                      "Dtk--Widget--DTitlebar {"
-                                      "background: %2;"
-                                      "}").arg(m_titlebarStyleSheet, color));
+    Q_UNUSED(color);
+//    // how dde-file-manager make the setting dialog works under dark theme?
+//    if (QColor(color).lightness() < 128) {
+//        DThemeManager::instance()->setTheme("dark");
+//    } else {
+//        DThemeManager::instance()->setTheme("light");
+//    }
+//    // apply titlebar background color
+//    titlebar()->setStyleSheet(QString("%1"
+//                                      "Dtk--Widget--DTitlebar {"
+//                                      "background: %2;"
+//                                      "}").arg(m_titlebarStyleSheet, color));
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
@@ -264,9 +264,8 @@ void MainWindow::initTitleBar()
     QAction *settingAction(new QAction(tr("&Settings"), this));
     m_menu->addAction(settingAction);
 
-    TitleBar *titleBar = new TitleBar;
-    titleBar->setTabBar(m_tabbar);
-    titlebar()->setCustomWidget(titleBar, Qt::AlignVCenter, false);
+    titlebar()->setIcon(QIcon::fromTheme("deepin-terminal", QIcon::fromTheme("utilities-terminal")));
+    titlebar()->setCustomWidget(m_tabbar);
     titlebar()->setAutoHideOnFullscreen(true);
     titlebar()->setMenu(m_menu);
 
