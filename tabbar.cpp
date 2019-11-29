@@ -6,8 +6,6 @@ TabBar::TabBar(QWidget *parent)
     : DTabBar(parent)
 {
     setTabsClosable(true);
-
-    setFixedHeight(40);
 }
 
 const QString TabBar::identifier(int index) const
