@@ -4,8 +4,6 @@ cmake_minimum_required(VERSION 3.9.5)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
-#include (DtkSettingsToolsMacros)
-
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed
@@ -87,6 +85,8 @@ target_link_libraries (dterm Qt5::Widgets ${DtkWidget_LIBRARIES} qtermwidget5)
 
 # Compile definitions for QTermWidget
 # So we can use QT_VERSION_CHECK
+# Note: upstream add that define in https://github.com/lxqt/qtermwidget/commit/b025013706483daaa073ff3dc7a137f5f04258d5
+#       but that commit is only available in version >= 0.15.0, so just leave it here now...
 target_compile_definitions(${EXE_NAME} PRIVATE
     QTERMWIDGET_VERSION_MAJOR=${QTermWidget5_VERSION_MAJOR}
     QTERMWIDGET_VERSION_MINOR=${QTermWidget5_VERSION_MINOR}

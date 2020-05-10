@@ -45,10 +45,7 @@ TermWidget::TermWidget(TermProperties properties, QWidget *parent)
 
     // config
     setColorScheme(Settings::instance()->colorScheme());
-
-#if !(QTERMWIDGET_VERSION <= QT_VERSION_CHECK(0, 7, 1))
     setBlinkingCursor(Settings::instance()->cursorBlink());
-#endif // !(QTERMWIDGET_VERSION <= QT_VERSION_CHECK(0, 7, 1))
 
     connect(this, &QTermWidget::urlActivated, this, [](const QUrl & url, bool fromContextMenu){
         if (QApplication::keyboardModifiers() & Qt::ControlModifier || fromContextMenu) {
