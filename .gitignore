@@ -1,4 +1,5 @@
 # User config
 *.user
+*.user.*
 build/
 .vscode/
