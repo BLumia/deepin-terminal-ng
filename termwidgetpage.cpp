@@ -232,6 +232,24 @@ void TermWidgetPage::setColorScheme(const QString &name)
     }
 }
 
+void TermWidgetPage::setFontFamily(const QString &fontFamily)
+{
+    QList<TermWidgetWrapper*> termList = findChildren<TermWidgetWrapper*>();
+    for (TermWidgetWrapper* term : termList) {
+        QFont curFont = term->terminalFont();
+        term->setTerminalFont(QFont(fontFamily, curFont.pointSize()));
+    }
+}
+
+void TermWidgetPage::setFontPointSize(int pointSize)
+{
+    QList<TermWidgetWrapper*> termList = findChildren<TermWidgetWrapper*>();
+    for (TermWidgetWrapper* term : termList) {
+        QFont curFont = term->terminalFont();
+        term->setTerminalFont(QFont(curFont.family(), pointSize));
+    }
+}
+
 void TermWidgetPage::sendTextToCurrentTerm(const QString &text)
 {
     TermWidgetWrapper* term = currentTerminal();

@@ -11,6 +11,7 @@
 
 #include <DTitlebar>
 #include <DThemeManager>
+#include <DSettingsWidgetFactory>
 #include <QVBoxLayout>
 #include <QDebug>
 #include <QApplication>
@@ -247,6 +248,18 @@ void MainWindow::initConnections()
         });
     });
 
+    connect(Settings::instance(), &Settings::fontFamilyChanged, this, [this](QString fontFamily) {
+        forAllTabPage([fontFamily](TermWidgetPage * tabPage) {
+            tabPage->setFontFamily(fontFamily);
+        });
+    });
+
+    connect(Settings::instance(), &Settings::fontPointSizeChanged, this, [this](int pointSize) {
+        forAllTabPage([pointSize](TermWidgetPage * tabPage) {
+            tabPage->setFontPointSize(pointSize);
+        });
+    });
+
     connect(Settings::instance(), &Settings::backgroundBlurChanged, this, [this](bool enabled) {
         setEnableBlurWindow(enabled);
     });
@@ -295,6 +308,7 @@ void MainWindow::setNewTermPage(TermWidgetPage *termPage, bool activePage)
 void MainWindow::showSettingDialog()
 {
     QScopedPointer<DSettingsDialog> dialog(new DSettingsDialog(this));
+    dialog->widgetFactory()->registerWidget("fontcombobox", Settings::createQFontComboBoxHandle);
     dialog->updateSettings(Settings::instance()->settings);
     dialog->exec();
 }

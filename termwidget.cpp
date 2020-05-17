@@ -45,6 +45,7 @@ TermWidget::TermWidget(TermProperties properties, QWidget *parent)
 
     // config
     setColorScheme(Settings::instance()->colorScheme());
+    setTerminalFont(QFont(Settings::instance()->fontFamily(), Settings::instance()->fontPointSize()));
     setBlinkingCursor(Settings::instance()->cursorBlink());
 
     connect(this, &QTermWidget::urlActivated, this, [](const QUrl & url, bool fromContextMenu){
@@ -159,6 +160,16 @@ bool TermWidgetWrapper::isTitleChanged() const
 QString TermWidgetWrapper::title() const
 {
     return m_term->title();
+}
+
+QFont TermWidgetWrapper::terminalFont() const
+{
+    return m_term->getTerminalFont();
+}
+
+void TermWidgetWrapper::setTerminalFont(QFont font)
+{
+    return m_term->setTerminalFont(font);
 }
 
 QString TermWidgetWrapper::workingDirectory()

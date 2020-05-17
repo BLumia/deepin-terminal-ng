@@ -28,6 +28,9 @@ public:
     bool isTitleChanged() const;
     QString title() const;
 
+    QFont terminalFont() const;
+    void setTerminalFont(QFont font);
+
     QString workingDirectory();
 
     void sendText(const QString & text);

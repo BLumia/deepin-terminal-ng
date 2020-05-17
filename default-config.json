@@ -21,6 +21,20 @@
                             "hide": true,
                             "reset": true,
                             "default": "Linux"
+                        },
+                        {
+                            "key": "font_family",
+                            "name": "Font Family",
+                            "type": "fontcombobox",
+                            "default": "Hack"
+                        },
+                        {
+                            "key": "font_point_size",
+                            "name": "Font Size (pt)",
+                            "type": "spinbutton",
+                            "default": 12,
+                            "max": 25,
+                            "min": 8
                         }
                     ]
                 }

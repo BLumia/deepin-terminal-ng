@@ -4,6 +4,10 @@
 #include <QApplication>
 #include <QStandardPaths>
 #include <DSettingsOption>
+#include <QFontComboBox>
+#include <DSettingsWidgetFactory>
+
+DWIDGET_USE_NAMESPACE
 
 Settings *Settings::m_settings_instance = nullptr;
 
@@ -43,6 +47,16 @@ void Settings::initConnection()
         emit opacityChanged(value.toInt() / 100.0);
     });
 
+    QPointer<DSettingsOption> fontFamily = settings->option("basic.interface.font_family");
+    connect(fontFamily, &Dtk::Core::DSettingsOption::valueChanged, this, [=] (QVariant value) {
+        emit fontFamilyChanged(value.toString());
+    });
+
+    QPointer<DSettingsOption> fontPointSize = settings->option("basic.interface.font_point_size");
+    connect(fontPointSize, &Dtk::Core::DSettingsOption::valueChanged, this, [=] (QVariant value) {
+        emit fontPointSizeChanged(value.toInt());
+    });
+
     QPointer<DSettingsOption> cursorShape = settings->option("advanced.cursor.shape");
     connect(cursorShape, &Dtk::Core::DSettingsOption::valueChanged, this, [=] (QVariant value) {
         emit cursorShapeChanged(value.toInt());
@@ -69,6 +83,16 @@ QString Settings::colorScheme() const
     return settings->option("basic.interface.theme")->value().toString();
 }
 
+QString Settings::fontFamily() const
+{
+    return settings->option("basic.interface.font_family")->value().toString();
+}
+
+int Settings::fontPointSize() const
+{
+    return settings->option("basic.interface.font_point_size")->value().toInt();
+}
+
 int Settings::cursorShape() const
 {
     return settings->option("advanced.cursor.shape")->value().toInt();
@@ -87,4 +111,24 @@ bool Settings::backgroundBlur() const
 void Settings::setColorScheme(const QString &name)
 {
     return settings->option("basic.interface.theme")->setValue(name);
+}
+
+QPair<QWidget *, QWidget *> Settings::createQFontComboBoxHandle(QObject *obj)
+{
+    auto option = qobject_cast<DTK_CORE_NAMESPACE::DSettingsOption *>(obj);
+
+    QFontComboBox *comboBox = new QFontComboBox;
+    comboBox->setFontFilters(QFontComboBox::MonospacedFonts);
+
+    if (!option->value().toString().isEmpty()) {
+        comboBox->setCurrentFont(QFont(option->value().toString()));
+    }
+
+    QPair<QWidget *, QWidget *> optionWidget = DSettingsWidgetFactory::createStandardItem(QByteArray(), option, comboBox);
+
+    option->connect(comboBox, &QFontComboBox::currentFontChanged, option, [ = ](const QFont & font) {
+        option->setValue(font.family());
+    });
+
+    return optionWidget;
 }

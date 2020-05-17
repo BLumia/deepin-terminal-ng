@@ -16,11 +16,15 @@ public:
 
     qreal opacity() const;
     QString colorScheme() const;
+    QString fontFamily() const;
+    int fontPointSize() const;
     int cursorShape() const;
     bool cursorBlink() const;
     bool backgroundBlur() const;
 
     void setColorScheme(const QString &name);
+
+    static QPair<QWidget *, QWidget *> createQFontComboBoxHandle(QObject *obj);
 
     DSettings *settings;
 
@@ -28,6 +32,8 @@ signals:
     void settingValueChanged(const QString &key, const QVariant &value);
 
     void opacityChanged(qreal opacity);
+    void fontFamilyChanged(QString fontFamily);
+    void fontPointSizeChanged(int pointSize);
     void cursorShapeChanged(int shape);
     void cursorBlinkChanged(bool blink);
     void backgroundBlurChanged(bool enabled);

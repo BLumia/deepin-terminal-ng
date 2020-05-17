@@ -25,6 +25,8 @@ public:
 
     void setTerminalOpacity(qreal opacity);
     void setColorScheme(const QString &name);
+    void setFontFamily(const QString &fontFamily);
+    void setFontPointSize(int pointSize);
 
     void sendTextToCurrentTerm(const QString & text);
 

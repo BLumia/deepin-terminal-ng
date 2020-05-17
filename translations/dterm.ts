@@ -4,7 +4,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="264"/>
+        <location filename="../mainwindow.cpp" line="277"/>
         <source>&amp;Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -28,117 +28,127 @@
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="10"/>
-        <source>Opacity</source>
+        <source>Font Family</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="11"/>
-        <location filename="../settings_translation.cpp" line="17"/>
-        <source>Advanced</source>
+        <source>Font Size (pt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="12"/>
-        <source>Cursor</source>
+        <source>Opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="13"/>
-        <source>Window</source>
+        <location filename="../settings_translation.cpp" line="19"/>
+        <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="14"/>
-        <source>Basic</source>
+        <source>Cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="15"/>
-        <source>Interface</source>
+        <source>Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="16"/>
-        <source>Shortcuts</source>
+        <source>Basic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings_translation.cpp" line="17"/>
+        <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="18"/>
-        <source>Terminal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings_translation.cpp" line="19"/>
-        <source>Workspace</source>
+        <source>Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="20"/>
-        <source>Fullscreen</source>
+        <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="21"/>
-        <source>Rename tab</source>
+        <source>Workspace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="22"/>
-        <source>Copy</source>
+        <source>Fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="23"/>
-        <source>Paste</source>
+        <source>Rename tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="24"/>
-        <source>Zoom in</source>
+        <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="25"/>
-        <source>Zoom out</source>
+        <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="26"/>
-        <source>Select lower window</source>
+        <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="27"/>
-        <source>Select left window</source>
+        <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="28"/>
-        <source>Select right window</source>
+        <source>Select lower window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="29"/>
-        <source>Select upper window</source>
+        <source>Select left window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="30"/>
-        <source>Horizontal split</source>
+        <source>Select right window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="31"/>
-        <source>New tab</source>
+        <source>Select upper window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="32"/>
+        <source>Horizontal split</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings_translation.cpp" line="33"/>
+        <source>New tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings_translation.cpp" line="34"/>
         <source>Vertical split</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="30"/>
+        <location filename="../main.cpp" line="31"/>
         <source>Deep Dark Terminal</source>
         <translation type="unfinished"></translation>
     </message>
@@ -146,58 +156,58 @@
 <context>
     <name>TermWidget</name>
     <message>
-        <location filename="../termwidget.cpp" line="79"/>
+        <location filename="../termwidget.cpp" line="77"/>
         <source>Copy &amp;Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="84"/>
+        <location filename="../termwidget.cpp" line="82"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="88"/>
+        <location filename="../termwidget.cpp" line="86"/>
         <source>&amp;Open File Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="94"/>
+        <location filename="../termwidget.cpp" line="92"/>
         <source>Split &amp;Horizontally</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="98"/>
+        <location filename="../termwidget.cpp" line="96"/>
         <source>Split &amp;Vertically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="106"/>
+        <location filename="../termwidget.cpp" line="104"/>
         <source>Exit Full&amp;screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="110"/>
+        <location filename="../termwidget.cpp" line="108"/>
         <source>Full&amp;screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="115"/>
+        <location filename="../termwidget.cpp" line="113"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="122"/>
-        <location filename="../termwidget.cpp" line="125"/>
+        <location filename="../termwidget.cpp" line="120"/>
+        <location filename="../termwidget.cpp" line="123"/>
         <source>Rename Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="125"/>
+        <location filename="../termwidget.cpp" line="123"/>
         <source>Tab name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../termwidget.cpp" line="134"/>
+        <location filename="../termwidget.cpp" line="132"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
