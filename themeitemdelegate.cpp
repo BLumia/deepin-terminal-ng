@@ -1,6 +1,7 @@
 #include "themeitemdelegate.h"
 
 #include <QPainter>
+#include <QPainterPath>
 
 ThemeItemDelegate::ThemeItemDelegate(QObject *parent)
     : QAbstractItemDelegate(parent)
