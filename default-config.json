@@ -52,13 +52,13 @@
                             "key": "copy",
                             "name": "Copy",
                             "type": "shortcut",
-                            "default":  "Ctrl+Shfit+C"
+                            "default":  "Ctrl+Shift+C"
                         },
                         {
                             "key": "paste",
                             "name": "Paste",
                             "type": "shortcut",
-                            "default":  "Ctrl+Shfit+V"
+                            "default":  "Ctrl+Shift+V"
                         },
                         {
                             "key": "zoom_in",
@@ -88,13 +88,13 @@
                             "key": "vertical_split",
                             "name": "Vertical split",
                             "type": "shortcut",
-                            "default":  "Ctrl+Shfit+H"
+                            "default":  "Ctrl+Shift+H"
                         },
                         {
                             "key": "horizontal_split",
                             "name": "Horizontal split",
                             "type": "shortcut",
-                            "default":  "Ctrl+Shfit+J"
+                            "default":  "Ctrl+Shift+J"
                         },
                         {
                             "key": "focus_nav_up",
