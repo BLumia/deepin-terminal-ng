@@ -13,8 +13,6 @@ DWIDGET_USE_NAMESPACE
 
 int main(int argc, char *argv[])
 {
-    DApplication::loadDXcbPlugin();
-
     DApplication app(argc, argv);
     app.setOrganizationName("blumia");
     app.setApplicationName("dterm");
