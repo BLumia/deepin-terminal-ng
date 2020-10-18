@@ -8,6 +8,7 @@
 #include <QDesktopServices>
 #include <QDebug>
 #include <QMenu>
+#include <QRegularExpression>
 
 #include <DDesktopServices>
 #include <dinputdialog.h>
@@ -33,7 +34,7 @@ TermWidget::TermWidget(TermProperties properties, QWidget *parent)
     if (properties.contains(Execute)) {
         QString args = properties[Execute].toString();
         qDebug() << args;
-        QStringList argList = args.split(QRegExp(QStringLiteral("\\s+")), QString::SkipEmptyParts);
+        QStringList argList = args.split(QRegularExpression(QStringLiteral("\\s+")), Qt::SkipEmptyParts);
         if (argList.count() > 0) {
             setShellProgram(argList.at(0));
             argList.removeAt(0);
