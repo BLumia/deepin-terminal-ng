@@ -24,6 +24,8 @@ public:
 
     void setColorScheme(const QString &name);
 
+    QList<QAction *> createShortcutActions();
+
     static QPair<QWidget *, QWidget *> createQFontComboBoxHandle(QObject *obj);
 
     DSettings *settings;

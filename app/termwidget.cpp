@@ -193,6 +193,11 @@ void TermWidgetWrapper::setColorScheme(const QString &name)
     m_term->setColorScheme(name);
 }
 
+void TermWidgetWrapper::toggleShowSearchBar()
+{
+    m_term->toggleShowSearchBar();
+}
+
 void TermWidgetWrapper::zoomIn()
 {
     m_term->zoomIn();

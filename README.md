@@ -4,7 +4,7 @@ DTK + QTermWidget terminal application.
 
 ### Build depts:
 
- - CMake
+ - CMake >= 3.13.0
  - Qt >= 5.7.1 (requires QtWidgets)
  - Deepin Toolkit (requires DtkCore and DtkWidgets)
  - QTermWidget5
@@ -44,7 +44,7 @@ If your language is not listed here, feel free to open up an new issue and then 
  - [x] international (translation) support
  - [ ] Custom commands
  - [ ] Drop-down mode (Quake mode in deepin-terminal)
- - [ ] Proper way to implement shortcut support
+ - [x] Proper way to implement shortcut support
  - [x] Properties dialog
  - [ ] Color scheme preview from selection panel
  - [ ] Independent terminal config

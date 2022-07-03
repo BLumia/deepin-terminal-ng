@@ -22,6 +22,7 @@ void GenerateSettingTranslate()
     auto shortcuts_advanced_fullscreenName = QObject::tr("Fullscreen");
     auto shortcuts_advanced_rename_tabName = QObject::tr("Rename tab");
     auto shortcuts_terminal_copyName = QObject::tr("Copy");
+    auto shortcuts_terminal_findName = QObject::tr("Find");
     auto shortcuts_terminal_pasteName = QObject::tr("Paste");
     auto shortcuts_terminal_zoom_inName = QObject::tr("Zoom in");
     auto shortcuts_terminal_zoom_outName = QObject::tr("Zoom out");

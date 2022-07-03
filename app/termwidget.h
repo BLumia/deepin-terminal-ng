@@ -38,6 +38,7 @@ public:
     void setColorScheme(const QString &name);
 
 public slots:
+    void toggleShowSearchBar();
     void zoomIn();
     void zoomOut();
     void copyClipboard();

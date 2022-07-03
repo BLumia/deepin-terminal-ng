@@ -156,6 +156,43 @@ void MainWindow::onTabTitleChanged(QString title)
     m_tabbar->setTabText(tabPage->identifier(), title);
 }
 
+void MainWindow::onBuiltinShortcutTriggered()
+{
+    QObject * sender = QObject::sender();
+    if (!sender->property("IS_BUILTIN_SHORTCUT").toBool()) {
+        return;
+    }
+
+    TermWidgetPage *page = currentTab();
+    QString name = sender->objectName();
+
+    if (name == "shortcuts.terminal.copy") {
+        if (page) page->copyClipboard();
+    } else if (name == "shortcuts.terminal.find") {
+        if (page) page->toggleShowSearchBar();
+    } else if (name == "shortcuts.terminal.paste") {
+        if (page) page->pasteClipboard();
+    } else if (name == "shortcuts.terminal.zoom_in") {
+        if (page) page->zoomInCurrentTierminal();
+    } else if (name == "shortcuts.terminal.zoom_out") {
+        if (page) page->zoomOutCurrentTerminal();
+    } else if (name == "shortcuts.workspace.focus_nav_down") {
+        if (page) page->focusNavigation(Qt::BottomEdge);
+    } else if (name == "shortcuts.workspace.focus_nav_left") {
+        if (page) page->focusNavigation(Qt::LeftEdge);
+    } else if (name == "shortcuts.workspace.focus_nav_right") {
+        if (page) page->focusNavigation(Qt::RightEdge);
+    } else if (name == "shortcuts.workspace.focus_nav_up") {
+        if (page) page->focusNavigation(Qt::TopEdge);
+    } else if (name == "shortcuts.workspace.horizontal_split") {
+        if (page) page->split(Qt::Horizontal);
+    } else if (name == "shortcuts.workspace.new_tab") {
+        this->addTab(currentTab()->createCurrentTerminalProperties(), true);
+    } else if (name == "shortcuts.workspace.vertical_split") {
+        if (page) page->split(Qt::Vertical);
+    }
+}
+
 void MainWindow::initPlugins()
 {
     // Todo: real plugin loader and plugin support.
@@ -178,66 +215,9 @@ void MainWindow::initShortcuts()
 {
     m_shortcutManager->initShortcuts();
 
-    QShortcut *focusNavUp = new QShortcut(QKeySequence("Alt+k"), this);
-    connect(focusNavUp, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->focusNavigation(Qt::TopEdge);
-    });
-    QShortcut *focusNavDown = new QShortcut(QKeySequence("Alt+j"), this);
-    connect(focusNavDown, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->focusNavigation(Qt::BottomEdge);
-    });
-    QShortcut *focusNavLeft = new QShortcut(QKeySequence("Alt+h"), this);
-    connect(focusNavLeft, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->focusNavigation(Qt::LeftEdge);
-    });
-    QShortcut *focusNavRight = new QShortcut(QKeySequence("Alt+l"), this);
-    connect(focusNavRight, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->focusNavigation(Qt::RightEdge);
-    });
-
-    QShortcut *splitHorizontal = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_J), this);
-    connect(splitHorizontal, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->split(Qt::Horizontal);
-    });
-    QShortcut *splitVertical = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_H), this);
-    connect(splitVertical, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->split(Qt::Vertical);
-    });
-
-    QShortcut *newTab = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_T), this);
-    connect(newTab, &QShortcut::activated, this, [this](){
-        this->addTab(currentTab()->createCurrentTerminalProperties(), true);
-    });
-
-    QShortcut *copyShortcut = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_C), this);
-    connect(copyShortcut, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->copyClipboard();
-    });
-
-    QShortcut *pasteShortcut = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_V), this);
-    connect(pasteShortcut, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->pasteClipboard();
-    });
-
-    QShortcut *zoomInShortcut = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_Equal), this);
-    connect(zoomInShortcut, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->zoomInCurrentTierminal();
-    });
-
-    QShortcut *zoomOutShortcut = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_Minus), this);
-    connect(zoomOutShortcut, &QShortcut::activated, this, [this](){
-        TermWidgetPage *page = currentTab();
-        if (page) page->zoomOutCurrentTerminal();
-    });
+    for (const QAction * action : this->actions()) {
+        connect(action, &QAction::triggered, this, &MainWindow::onBuiltinShortcutTriggered);
+    }
 }
 
 void MainWindow::initConnections()

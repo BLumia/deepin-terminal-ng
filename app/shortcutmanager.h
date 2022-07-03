@@ -18,6 +18,8 @@ public:
     QList<QAction*> createCustomCommandsFromConfig();
     QList<QAction*> createBuiltinShortcutsFromConfig();
 
+    static QAction *createBuiltinShortcutAction(const QString & key, const QString & shortcutText);
+
 private:
     MainWindow *m_mainWindow = nullptr;
 

@@ -61,6 +61,12 @@
                             "default":  "Ctrl+Shift+V"
                         },
                         {
+                            "key": "find",
+                            "name": "Find",
+                            "type": "shortcut",
+                            "default":  "Ctrl+Shift+F"
+                        },
+                        {
                             "key": "zoom_in",
                             "name": "Zoom in",
                             "type": "shortcut",

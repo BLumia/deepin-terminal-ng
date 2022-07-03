@@ -33,6 +33,8 @@ public:
     void copyClipboard();
     void pasteClipboard();
 
+    void toggleShowSearchBar();
+
     void zoomInCurrentTierminal();
     void zoomOutCurrentTerminal();
 

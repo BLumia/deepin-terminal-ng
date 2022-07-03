@@ -73,7 +73,7 @@ QList<QAction *> ShortcutManager::createCustomCommandsFromConfig()
 
 QList<QAction *> ShortcutManager::createBuiltinShortcutsFromConfig()
 {
-    QList<QAction *> actionList;
+    return Settings::instance()->createShortcutActions();
 
     // TODO.
 
@@ -89,6 +89,15 @@ QList<QAction *> ShortcutManager::createBuiltinShortcutsFromConfig()
 //        if (page) page->focusNavigation(Up);
 //    });
 //    actionList.append(action);
+}
 
-    return actionList;
+QAction * ShortcutManager::createBuiltinShortcutAction(const QString &key, const QString &shortcutText)
+{
+    QAction * action = new QAction();
+
+    action->setShortcut(shortcutText);
+    action->setObjectName(key);
+    action->setProperty("IS_BUILTIN_SHORTCUT", true);
+
+    return action;
 }

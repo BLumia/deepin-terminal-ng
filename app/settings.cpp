@@ -1,11 +1,14 @@
 #include "settings.h"
 
 #include <QDebug>
+#include <QAction>
 #include <QApplication>
 #include <QStandardPaths>
 #include <DSettingsOption>
 #include <QFontComboBox>
 #include <DSettingsWidgetFactory>
+
+#include "shortcutmanager.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -111,6 +114,21 @@ bool Settings::backgroundBlur() const
 void Settings::setColorScheme(const QString &name)
 {
     return settings->option("basic.interface.theme")->setValue(name);
+}
+
+QList<QAction *> Settings::createShortcutActions()
+{
+    QList<QAction *> actionList;
+
+    const auto options = settings->options();
+    for (const auto & option : options) {
+        if (option.data()->key().startsWith("shortcuts.") && option.data()->viewType() == "shortcut") {
+            qDebug() << option.data()->key() << option.data()->viewType();
+            actionList << ShortcutManager::createBuiltinShortcutAction(option.data()->key(), option.data()->value().toString());
+        }
+    }
+
+    return actionList;
 }
 
 QPair<QWidget *, QWidget *> Settings::createQFontComboBoxHandle(QObject *obj)

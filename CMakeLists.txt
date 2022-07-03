@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9.5)
+cmake_minimum_required(VERSION 3.13.0)
 
 project(dtng)
 
@@ -6,62 +6,27 @@ include(GNUInstallDirs)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_FLAGS "-g -Wall")
 set(QT_MINIMUM_VERSION "5.7.1")
 
+# Program
+set (EXE_NAME dterm)
+
 # Find the QtWidgets library
 find_package(Qt5 ${QT_MINIMUM_VERSION} CONFIG REQUIRED Widgets LinguistTools)
 find_package(Dtk REQUIRED Core Widget Tools)
 find_package(QTermWidget5 REQUIRED)
 
-# Populate a CMake variable with the sources
-# TODO: portable headers?
-set (DTNG_CPP_FILES
-    main.cpp
-    mainwindow.cpp
-    tabbar.cpp
-    termwidget.cpp
-    termwidgetpage.cpp
-    rightpanel.cpp
-    themepanel.cpp
-    themelistview.cpp
-    themelistmodel.cpp
-    themeitemdelegate.cpp
-    termproperties.cpp
-    settings.cpp
-    shortcutmanager.cpp
-    themepanelplugin.cpp
-)
+add_executable(${EXE_NAME} "")
 
-set (DTNG_HEADER_FILES
-    define.h
-    mainwindow.h
-    tabbar.h
-    termwidget.h
-    termwidgetpage.h
-    rightpanel.h
-    themepanel.h
-    themelistview.h
-    themelistmodel.h
-    themeitemdelegate.h
-    termproperties.h
-    settings.h
-    shortcutmanager.h
-    mainwindowplugininterface.h
-    themepanelplugin.h
-)
+add_subdirectory(app)
 
 set (DTNG_QRC_FILES
     resources.qrc
 )
-
-# Program
-set (EXE_NAME dterm)
 
 # Translation
 file (GLOB DTNG_TS_FILES translations/*.ts)
@@ -71,9 +36,8 @@ dtk_create_i18n_from_json(DTNG_SETTINGS_I18N_FILES default-config.json settings_
 list (APPEND DTNG_CPP_FILES_FOR_I18N ${DTNG_SETTINGS_I18N_FILES})
 qt5_create_translation(DTNG_QM_FILES ${DTNG_CPP_FILES_FOR_I18N} ${DTNG_TS_FILES})
 
-add_executable (${EXE_NAME}
-    ${DTNG_HEADER_FILES}
-    ${DTNG_CPP_FILES}
+target_sources(${EXE_NAME}
+PRIVATE
     ${DTNG_QRC_FILES}
     ${DTNG_QM_FILES}
 )
@@ -81,6 +45,7 @@ add_executable (${EXE_NAME}
 target_include_directories(${EXE_NAME} PUBLIC
     ${DtkWidget_INCLUDE_DIRS}
     ${QTERMWIDGET_INCLUDE_DIRS}
+    ./app
 )
 
 target_link_libraries (${EXE_NAME} Qt5::Widgets ${DtkWidget_LIBRARIES} qtermwidget5)
@@ -102,6 +67,6 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif ()
 
 install(TARGETS ${EXE_NAME} RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-install(FILES ${DTNG_QM_FILES} DESTINATION share/dterm/translations)
+install(FILES ${DTNG_QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/dterm/translations)
 install(FILES dist/dterm.desktop
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/)
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/applications/)

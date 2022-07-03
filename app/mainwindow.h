@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <DMainWindow>
 #include <QVBoxLayout>
@@ -36,6 +35,7 @@ protected:
 protected slots:
     void onTermTitleChanged(QString title);
     void onTabTitleChanged(QString title);
+    void onBuiltinShortcutTriggered();
 
 private:
     void initPlugins();
@@ -56,4 +56,3 @@ private:
     QList<MainWindowPluginInterface*> m_plugins;
 };
 
-#endif // MAINWINDOW_H

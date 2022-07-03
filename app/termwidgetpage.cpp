@@ -274,6 +274,14 @@ void TermWidgetPage::pasteClipboard()
     }
 }
 
+void TermWidgetPage::toggleShowSearchBar()
+{
+    TermWidgetWrapper* term = currentTerminal();
+    if (term) {
+        term->toggleShowSearchBar();
+    }
+}
+
 void TermWidgetPage::zoomInCurrentTierminal()
 {
     TermWidgetWrapper* term = currentTerminal();
