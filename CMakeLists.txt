@@ -1,6 +1,8 @@
+cmake_minimum_required(VERSION 3.9.5)
+
 project(dtng)
 
-cmake_minimum_required(VERSION 3.9.5)
+include(GNUInstallDirs)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
@@ -81,7 +83,7 @@ target_include_directories(${EXE_NAME} PUBLIC
     ${QTERMWIDGET_INCLUDE_DIRS}
 )
 
-target_link_libraries (dterm Qt5::Widgets ${DtkWidget_LIBRARIES} qtermwidget5)
+target_link_libraries (${EXE_NAME} Qt5::Widgets ${DtkWidget_LIBRARIES} qtermwidget5)
 
 # Compile definitions for QTermWidget
 # So we can use QT_VERSION_CHECK
@@ -99,4 +101,7 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX /usr)
 endif ()
 
+install(TARGETS ${EXE_NAME} RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(FILES ${DTNG_QM_FILES} DESTINATION share/dterm/translations)
+install(FILES dist/dterm.desktop
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/)

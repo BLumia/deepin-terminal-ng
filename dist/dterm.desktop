@@ -1,0 +1,12 @@
+[Desktop Entry]
+Categories=DDE;Utility;System;TerminalEmulator;
+Comment=Use the command line
+Exec=dterm
+GenericName=Deep Dark Terminal
+Icon=deepin-terminal
+Keywords=shell;prompt;command;commandline;
+Name=Deep Dark Terminal
+StartupNotify=false
+TryExec=dterm
+Type=Application
+X-Deepin-Vendor=deepin
