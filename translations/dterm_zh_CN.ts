@@ -4,15 +4,17 @@
 <context>
     <name>MainWindow</name>
     <message>
+        <location filename="../app/mainwindow.cpp" line="257"/>
         <source>&amp;Settings</source>
-        <translation type="vanished">设置(&amp;S)</translation>
+        <translation>设置(&amp;S)</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
+        <location filename="../app/main.cpp" line="29"/>
         <source>Deep Dark Terminal</source>
-        <translation type="vanished">深邃终端</translation>
+        <translation>深邃终端</translation>
     </message>
     <message>
         <location filename="../settings_translation.cpp" line="7"/>
@@ -163,55 +165,68 @@
 <context>
     <name>TermWidget</name>
     <message>
+        <location filename="../app/termwidget.cpp" line="78"/>
         <source>Copy &amp;Selection</source>
-        <translation type="vanished">复制选区(&amp;S)</translation>
+        <translation>复制选区(&amp;S)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="83"/>
         <source>&amp;Paste</source>
-        <translation type="vanished">粘贴(&amp;P)</translation>
+        <translation>粘贴(&amp;P)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="87"/>
         <source>&amp;Open File Manager</source>
-        <translation type="vanished">在文件管理器中打开(&amp;O)</translation>
+        <translation>在文件管理器中打开(&amp;O)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="93"/>
         <source>Split &amp;Horizontally</source>
-        <translation type="vanished">横向分屏(&amp;H)</translation>
+        <translation>横向分屏(&amp;H)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="97"/>
         <source>Split &amp;Vertically</source>
-        <translation type="vanished">纵向分屏(&amp;V)</translation>
+        <translation>纵向分屏(&amp;V)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="105"/>
         <source>Exit Full&amp;screen</source>
-        <translation type="vanished">退出全屏(&amp;S)</translation>
+        <translation>退出全屏(&amp;S)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="109"/>
         <source>Full&amp;screen</source>
-        <translation type="vanished">全屏(&amp;S)</translation>
+        <translation>全屏(&amp;S)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="114"/>
         <source>&amp;Find</source>
-        <translation type="vanished">查找(&amp;F)</translation>
+        <translation>查找(&amp;F)</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="121"/>
+        <location filename="../app/termwidget.cpp" line="124"/>
         <source>Rename Tab</source>
-        <translation type="vanished">重命名此标签页</translation>
+        <translation>重命名此标签页</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="124"/>
         <source>Tab name:</source>
-        <translation type="vanished">标签页名称:</translation>
+        <translation>标签页名称:</translation>
     </message>
     <message>
+        <location filename="../app/termwidget.cpp" line="133"/>
         <source>Settings</source>
-        <translation type="vanished">设置</translation>
+        <translation>设置</translation>
     </message>
 </context>
 <context>
     <name>ThemePanelPlugin</name>
     <message>
+        <location filename="../app/themepanelplugin.cpp" line="21"/>
         <source>Switch &amp;theme</source>
-        <translation type="vanished">切换主题(&amp;T)</translation>
+        <translation>切换主题(&amp;T)</translation>
     </message>
 </context>
 </TS>

@@ -123,7 +123,6 @@ QList<QAction *> Settings::createShortcutActions()
     const auto options = settings->options();
     for (const auto & option : options) {
         if (option.data()->key().startsWith("shortcuts.") && option.data()->viewType() == "shortcut") {
-            qDebug() << option.data()->key() << option.data()->viewType();
             actionList << ShortcutManager::createBuiltinShortcutAction(option.data()->key(), option.data()->value().toString());
         }
     }

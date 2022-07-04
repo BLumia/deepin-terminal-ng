@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../app/mainwindow.cpp" line="257"/>
+        <source>&amp;Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../settings_translation.cpp" line="7"/>
@@ -142,6 +150,78 @@
     <message>
         <location filename="../settings_translation.cpp" line="35"/>
         <source>Vertical split</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="29"/>
+        <source>Deep Dark Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TermWidget</name>
+    <message>
+        <location filename="../app/termwidget.cpp" line="78"/>
+        <source>Copy &amp;Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="83"/>
+        <source>&amp;Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="87"/>
+        <source>&amp;Open File Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="93"/>
+        <source>Split &amp;Horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="97"/>
+        <source>Split &amp;Vertically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="105"/>
+        <source>Exit Full&amp;screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="109"/>
+        <source>Full&amp;screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="114"/>
+        <source>&amp;Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="121"/>
+        <location filename="../app/termwidget.cpp" line="124"/>
+        <source>Rename Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="124"/>
+        <source>Tab name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/termwidget.cpp" line="133"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ThemePanelPlugin</name>
+    <message>
+        <location filename="../app/themepanelplugin.cpp" line="21"/>
+        <source>Switch &amp;theme</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
