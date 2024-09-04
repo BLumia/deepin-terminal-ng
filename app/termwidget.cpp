@@ -85,7 +85,7 @@ void TermWidget::customContextMenuCall(const QPoint &pos)
     });
 
     menu.addAction(QIcon::fromTheme("document-open-folder"), tr("&Open File Manager"), this, [this] {
-        DDesktopServices::showFolder(QUrl::fromLocalFile(workingDirectory()));
+        Dtk::Gui::DDesktopServices::showFolder(QUrl::fromLocalFile(workingDirectory()));
     });
 
     menu.addSeparator();

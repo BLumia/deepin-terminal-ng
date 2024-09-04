@@ -3,7 +3,6 @@
 #include "termproperties.h"
 
 #include <DApplication>
-#include <DApplicationSettings>
 
 #include <QDebug>
 #include <QCommandLineParser>
@@ -27,8 +26,6 @@ int main(int argc, char *argv[])
 #endif // QT_DEBUG
 
     app.setApplicationDisplayName(QObject::tr("Deep Dark Terminal"));
-
-    DApplicationSettings setting;
 
     qputenv("TERM", "xterm-256color");
 

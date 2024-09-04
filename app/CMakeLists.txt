@@ -5,7 +5,7 @@ set (EXE_NAME dterm)
 
 # Find the QtWidgets library
 find_package(Qt5 ${QT_MINIMUM_VERSION} CONFIG REQUIRED Widgets LinguistTools)
-find_package(Dtk REQUIRED Core Widget Tools)
+find_package(Dtk REQUIRED Core Widget Gui Tools)
 find_package(QTermWidget5 REQUIRED)
 
 # Populate a CMake variable with the sources
@@ -78,12 +78,10 @@ add_executable(${EXE_NAME}
 )
 
 target_include_directories(${EXE_NAME} PUBLIC
-    ${DtkWidget_INCLUDE_DIRS}
-    ${QTERMWIDGET_INCLUDE_DIRS}
     ./
 )
 
-target_link_libraries (${EXE_NAME} Qt5::Widgets ${DtkWidget_LIBRARIES} qtermwidget5)
+target_link_libraries (${EXE_NAME} Qt5::Widgets Dtk::Widget Dtk::Gui qtermwidget5)
 
 # Compile definitions for QTermWidget
 # So we can use QT_VERSION_CHECK

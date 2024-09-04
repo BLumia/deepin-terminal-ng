@@ -12,7 +12,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="29"/>
+        <location filename="../app/main.cpp" line="28"/>
         <source>Deep Dark Terminal</source>
         <translation>深邃终端</translation>
     </message>
