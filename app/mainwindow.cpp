@@ -10,7 +10,6 @@
 #include "themepanelplugin.h"
 
 #include <DTitlebar>
-#include <DThemeManager>
 #include <DSettingsWidgetFactory>
 #include <QVBoxLayout>
 #include <QDebug>
@@ -37,7 +36,7 @@ MainWindow::MainWindow(TermProperties properties, QWidget *parent) :
     setWindowIcon(QIcon::fromTheme("deepin-terminal"));
 
     // Init layout
-    m_centralLayout->setMargin(0);
+    m_centralLayout->setContentsMargins(0, 0, 0, 0);
     m_centralLayout->setSpacing(0);
 
     m_centralLayout->addWidget(m_termStackWidget);
@@ -120,17 +119,6 @@ void MainWindow::forAllTabPage(const std::function<void(TermWidgetPage*)> &func)
 void MainWindow::setTitleBarBackgroundColor(QString color)
 {
     Q_UNUSED(color);
-//    // how dde-file-manager make the setting dialog works under dark theme?
-//    if (QColor(color).lightness() < 128) {
-//        DThemeManager::instance()->setTheme("dark");
-//    } else {
-//        DThemeManager::instance()->setTheme("light");
-//    }
-//    // apply titlebar background color
-//    titlebar()->setStyleSheet(QString("%1"
-//                                      "Dtk--Widget--DTitlebar {"
-//                                      "background: %2;"
-//                                      "}").arg(m_titlebarStyleSheet, color));
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
