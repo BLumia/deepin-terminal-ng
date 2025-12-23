@@ -52,6 +52,12 @@ signals:
     void termGetFocus();
     void termClosed();
 
+protected:
+    bool focusNextPrevChild(bool) override {
+        // prevent focus change with Tab and, especially, Backtab(shift+tab)
+        return false;
+    }
+
 private:
     void initUI();
 
